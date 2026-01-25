@@ -1,6 +1,10 @@
-import uuid
+"""
+Chat endpoint - processes user messages through the LLM.
+"""
+
 from fastapi import APIRouter
 from genai_challenge.api.schemas.chat import ChatRequest, ChatResponse
+from genai_challenge.services.llm_service import chat as llm_chat
 
 router = APIRouter()
 
@@ -9,21 +13,15 @@ async def chat(request: ChatRequest) -> ChatResponse:
     """
     Chat endpoint that processes user messages and returns AI responses.
 
-    Currently return a mock response. Will be connected to Ollama LLM
-    and converation memory
+    - Mantains conversation history via session_id
+    - Ollama LLM through LangChain
+    - Applies system prompt for consistency
     """
-    # Generate session_id if not provided (for new conversations)
-    session_id = request.session_id or str(uuid.uuid4())
-
-    # next steps: Replace with actual LLM call
-    # 1. retrieve conversation history from memory
-    # 2. build prompt with system message, history and user message
-    # 3. Call Ollama for response
-    # 4. Save to conversation memory
-
-    mock_response = f"Mock response to: {request.message}"
-
+    response_text, session_id = await llm_chat(
+        message=request.message,
+        session_id=request.session_id,
+    )
     return ChatResponse(
-        response=mock_response,
+        response=response_text,
         session_id=session_id,
     )
