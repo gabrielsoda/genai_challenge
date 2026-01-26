@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🤖 ACME Assistant")
+st.title("🧨💥 ACME Assistant")
 st.markdown("Chat with an LLM or ask questions about company documents using RAG.")
 
 # Sidebar for mode selection and settings
