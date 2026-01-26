@@ -1,0 +1,57 @@
+ACME Product Line Guide
+
+1. ACME Pro Suite
+
+The ACME Pro Suite is our flagship productivity software designed for business professionals.
+
+Features:
+- Document creation and collaboration
+- Project management tools
+- Cloud storage (50GB included)
+- Video conferencing for up to 100 participants
+- Integration with major CRM systems
+
+Pricing:
+- Monthly: $29.99/user
+- Annual: $299/user (save 17%)
+- Enterprise: Contact sales for custom pricing
+
+System Requirements:
+- Windows 10/11 or macOS 12+
+- 4GB RAM minimum (8GB recommended)
+- 2GB available disk space
+- Stable internet connection
+
+2. ACME Analytics
+
+ACME Analytics provides business intelligence and data visualization tools.
+
+Features:
+- Real-time dashboards
+- Custom report builder
+- Data import from 50+ sources
+- AI-powered insights
+- Scheduled report delivery
+
+Pricing:
+- Starter: $49/month (up to 5 users)
+- Business: $199/month (up to 25 users)
+- Enterprise: Custom pricing
+
+3. ACME Security Shield
+
+Our comprehensive cybersecurity solution for businesses of all sizes.
+
+Features:
+- Endpoint protection
+- Email security
+- Network monitoring
+- Vulnerability scanning
+- 24/7 threat response team
+
+Pricing:
+- Basic: $9.99/device/month
+- Professional: $19.99/device/month
+- Enterprise: Contact sales
+
+All ACME products come with 24/7 technical support and a 30-day money-back guarantee.

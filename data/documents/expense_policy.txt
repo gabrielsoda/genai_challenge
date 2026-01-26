@@ -1,0 +1,57 @@
+ACME Expense Reimbursement Policy
+
+General Guidelines
+
+All business expenses must be:
+- Reasonable and necessary for business purposes
+- Pre-approved for amounts over $500
+- Submitted within 30 days of incurring the expense
+- Accompanied by itemized receipts
+
+Travel Expenses
+
+Airfare:
+- Book economy class for flights under 6 hours
+- Business class permitted for flights over 6 hours
+- Book at least 14 days in advance when possible
+- Use the company's preferred travel agency
+
+Hotels:
+- Maximum rate: $200/night (domestic), $300/night (international)
+- Choose hotels with corporate rates when available
+- Incidentals are the employee's responsibility
+
+Ground Transportation:
+- Use ride-sharing services or public transit when practical
+- Rental cars require manager approval
+- Economy or compact cars only
+
+Meals and Entertainment
+
+Per Diem Rates (no receipts required up to these amounts):
+- Breakfast: $20
+- Lunch: $25
+- Dinner: $50
+
+Client Entertainment:
+- Pre-approval required for expenses over $200
+- Must document business purpose and attendees
+- Alcohol limited to reasonable amounts
+
+Home Office Expenses
+
+Remote employees may expense:
+- Internet service (up to $75/month)
+- Office supplies (up to $200/year)
+- Ergonomic equipment (one-time $500 allowance)
+
+How to Submit Expenses
+
+1. Log into Expensify (company account)
+2. Create a new expense report
+3. Upload receipts via mobile app or email
+4. Categorize each expense appropriately
+5. Add business justification
+6. Submit for manager approval
+
+Reimbursement is processed within 5 business days of approval.

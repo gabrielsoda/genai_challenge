@@ -1,0 +1,58 @@
+ACME Security and Privacy Policy
+
+Last Updated: January 2024
+
+1. Data Collection
+
+ACME collects the following types of data:
+- Account information (name, email, company)
+- Usage data (features used, session duration)
+- Technical data (IP address, device type, browser)
+- Payment information (processed securely by our payment partners)
+
+2. Data Protection
+
+All data is encrypted:
+- In transit: TLS 1.3 encryption
+- At rest: AES-256 encryption
+
+Our data centers are SOC 2 Type II certified and located in:
+- United States (primary)
+- European Union (for EU customers)
+- Australia (for APAC customers)
+
+3. User Rights
+
+You have the right to:
+- Access your personal data
+- Request data correction
+- Request data deletion
+- Export your data in portable format
+- Opt-out of marketing communications
+
+To exercise these rights, contact privacy@acme.com.
+
+4. Password Requirements
+
+Passwords must:
+- Be at least 12 characters long
+- Contain uppercase and lowercase letters
+- Include at least one number
+- Include at least one special character
+- Not be a previously used password
+
+5. Two-Factor Authentication
+
+Two-factor authentication (2FA) is:
+- Optional for personal accounts
+- Required for Business and Enterprise accounts
+- Supported via SMS, authenticator apps, and hardware keys
+
+6. Compliance
+
+ACME is compliant with:
+- GDPR (European Union)
+- CCPA (California)
+- SOC 2 Type II
+- ISO 27001
+- HIPAA (for Healthcare customers with BAA)

@@ -1,0 +1,40 @@
+ACME Frequently Asked Questions (FAQ)
+
+Account Management
+
+Q: How do I create an account?
+A: Visit acme.com/signup, enter your email address, create a password, and verify your email. You can also sign up using Google or Microsoft accounts.
+
+Q: How do I change my password?
+A: Go to Settings > Security > Change Password. You'll need to enter your current password and then your new password twice.
+
+Q: Can I have multiple users on one account?
+A: Yes, Business and Enterprise plans support multiple users. The account owner can invite users from the Admin panel.
+
+Q: How do I cancel my subscription?
+A: Navigate to Settings > Billing > Cancel Subscription. Note that cancellations take effect at the end of your current billing period.
+
+Billing Questions
+
+Q: What payment methods do you accept?
+A: We accept Visa, MasterCard, American Express, PayPal, and bank transfers for annual plans.
+
+Q: Can I get a receipt for my purchase?
+A: Yes, receipts are automatically emailed after each payment. You can also download past receipts from Settings > Billing > Invoice History.
+
+Q: Do you offer discounts for nonprofits?
+A: Yes, qualified nonprofits receive a 30% discount. Contact sales@acme.com with proof of nonprofit status.
+
+Q: Is there a free trial?
+A: Yes, all plans include a 14-day free trial. No credit card required to start.
+
+Technical Questions
+
+Q: Which browsers are supported?
+A: We support the latest versions of Chrome, Firefox, Safari, and Edge. Internet Explorer is not supported.
+
+Q: Is there a mobile app?
+A: Yes, ACME apps are available for iOS (14+) and Android (10+) on their respective app stores.
+
+Q: Can I use ACME offline?
+A: Yes, ACME Pro Suite has offline mode. Changes sync automatically when you reconnect to the internet.

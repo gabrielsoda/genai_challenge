@@ -1,0 +1,63 @@
+ACME Integration Guide
+
+Overview
+
+ACME products integrate with dozens of popular business tools. This guide covers the most common integrations.
+
+Salesforce Integration
+
+Setup:
+1. Go to Settings > Integrations > Salesforce
+2. Click "Connect to Salesforce"
+3. Log in with your Salesforce admin credentials
+4. Grant the requested permissions
+5. Select which objects to sync
+
+Supported Features:
+- Bidirectional contact sync
+- Opportunity tracking
+- Activity logging
+- Custom field mapping
+
+Slack Integration
+
+Setup:
+1. Visit Settings > Integrations > Slack
+2. Click "Add to Slack"
+3. Select your workspace
+4. Choose the channels for notifications
+
+Features:
+- Real-time notifications
+- /acme slash commands
+- File sharing
+- Status updates
+
+Microsoft 365 Integration
+
+Setup:
+1. Navigate to Settings > Integrations > Microsoft 365
+2. Sign in with your Microsoft admin account
+3. Approve the required permissions
+
+Features:
+- Single Sign-On (SSO)
+- Calendar sync
+- OneDrive file access
+- Teams integration
+
+API Access
+
+For custom integrations, use our REST API:
+- Documentation: developers.acme.com
+- API Key: Generated in Settings > Developer > API Keys
+- Rate Limits: 1000 requests/hour (Enterprise: 10,000/hour)
+
+Webhook Support
+
+ACME supports webhooks for real-time event notifications:
+- Document events (created, updated, deleted)
+- User events (invited, removed)
+- Payment events (subscription changes)
+
+Configure webhooks at Settings > Developer > Webhooks

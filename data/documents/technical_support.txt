@@ -1,0 +1,56 @@
+ACME Technical Support Guide
+
+Contact Information
+
+Phone Support: 1-800-ACME-HELP (1-800-226-3435)
+- Available Monday-Friday, 8:00 AM - 8:00 PM EST
+- Weekend support available for Enterprise customers
+
+Email Support: support@acme.com
+- Response time: 24-48 hours for standard tickets
+- Priority support: 4-hour response for Enterprise customers
+
+Live Chat: Available at acme.com/support
+- Hours: Monday-Friday, 9:00 AM - 6:00 PM EST
+
+Troubleshooting Common Issues
+
+Issue: Application won't start
+Solution:
+1. Restart your computer
+2. Ensure your system meets minimum requirements
+3. Check for pending updates
+4. Reinstall the application if issues persist
+
+Issue: Login problems
+Solution:
+1. Verify your username and password
+2. Clear browser cache and cookies
+3. Try the "Forgot Password" option
+4. Contact support if account is locked
+
+Issue: Sync not working
+Solution:
+1. Check your internet connection
+2. Verify you're logged into the same account on all devices
+3. Check available cloud storage space
+4. Force sync from Settings > Sync > Force Sync
+
+Support Tiers
+
+Basic Support (included with all products):
+- Knowledge base access
+- Community forums
+- Email support (48-hour response)
+
+Premium Support ($99/year):
+- Phone support
+- Live chat
+- 24-hour email response
+- Screen sharing assistance
+
+Enterprise Support (included with Enterprise plans):
+- Dedicated account manager
+- 4-hour response guarantee
+- On-site support available
+- Custom training sessions

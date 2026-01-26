@@ -1,0 +1,53 @@
+ACME Pro Suite Release Notes
+
+Version 4.5.0 (January 2024)
+
+New Features:
+- AI-powered document summarization
+- Real-time collaboration with up to 50 simultaneous editors
+- New project templates for marketing and sales teams
+- Dark mode support across all platforms
+- Keyboard shortcuts customization
+
+Improvements:
+- 40% faster document loading
+- Reduced memory usage by 25%
+- Improved search accuracy
+- Better mobile responsiveness
+
+Bug Fixes:
+- Fixed issue where comments disappeared after refresh
+- Resolved sync conflicts in shared documents
+- Fixed timezone display errors in scheduling
+- Corrected PDF export formatting issues
+
+Version 4.4.0 (December 2023)
+
+New Features:
+- Video conferencing integration
+- Document version comparison tool
+- Automated backup scheduling
+- Custom branding for Enterprise customers
+
+Improvements:
+- Enhanced security with additional 2FA options
+- Faster file upload speeds
+- Improved accessibility compliance
+
+Bug Fixes:
+- Fixed login issues on Safari 16
+- Resolved notification delivery delays
+- Fixed chart rendering in exported documents
+
+Version 4.3.0 (November 2023)
+
+New Features:
+- Gantt chart view for projects
+- External guest access for documents
+- Email integration for task creation
+- Audit log for administrators
+
+Known Issues (Being Addressed):
+- Occasional delay in real-time sync (>5 users)
+- Print layout issues with complex tables
+- Mobile app battery consumption on Android
