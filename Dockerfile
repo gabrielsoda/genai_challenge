@@ -16,11 +16,14 @@ RUN uv sync --frozen --no-dev
 COPY src/ ./src/
 COPY scripts/ ./scripts/
 
+# Make entrypoint executable
+RUN chmod +x /app/scripts/entrypoint.sh
+
 # Install the package
 RUN uv pip install -e .
 
 # Expose port
 EXPOSE 8000
 
-# Run the application
-CMD ["uv", "run", "uvicorn", "genai_challenge.main:app", "--app-dir", "src", "--host", "0.0.0.0", "--port", "8000"]
+# Use entrypoint for auto-setup
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]

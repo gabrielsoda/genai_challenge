@@ -1,148 +1,187 @@
-"""
-Streamlit frontend GenAI Challenge
+"""Streamlit frontend for GenAI Challenge."""
 
-web UI for:
-- Chat with the LLM (with conversation memory)
-- RAG Q&A over company documents
-"""
-
-import streamlit as st
-import requests
 import os
-# backend API URL
+
+import httpx
+import streamlit as st
+
+# Configuration - use environment variable for Docker compatibility
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
 
+st.set_page_config(
+    page_title="ACME GenAI Assistant",
+    page_icon="🧨",
+    layout="wide",
+)
+
+st.title("🤖 ACME Assistant")
+st.markdown("Chat with an LLM or ask questions about company documents using RAG.")
+
+# Sidebar for mode selection and settings
+with st.sidebar:
+    st.header("Settings")
+    mode = st.radio(
+        "Select Mode",
+        ["💬 Chat", "📚 RAG Q&A"],
+        help="Chat: Direct conversation with LLM\nRAG Q&A: Questions answered from documents",
+    )
+
+    st.divider()
+
+    # Health check
+    st.subheader("System Status")
+    try:
+        response = httpx.get(f"{API_BASE_URL}/healthcheck", timeout=5.0)
+        if response.status_code == 200:
+            data = response.json()
+            st.success(f"API: {data['status']}")
+        else:
+            st.error("API: Error")
+    except Exception:
+        st.error("API: Offline")
+        st.caption("Start the backend: `uv run uvicorn genai_challenge.main:app --app-dir src`")
+
+# Initialize session state
+if "chat_messages" not in st.session_state:
+    st.session_state.chat_messages = []
+if "chat_session_id" not in st.session_state:
+    st.session_state.chat_session_id = None
+if "rag_messages" not in st.session_state:
+    st.session_state.rag_messages = []
+
+
 def call_chat_api(message: str, session_id: str | None = None) -> dict:
-    """Call the /chat endpoint"""
-    payload = {"message": message}
-    if session_id:
-        payload["session_id"] = session_id
-    response = requests.post(f"{API_BASE_URL}/chat", json=payload)
-    response.raise_for_status()
-    return response.json()
+    """Call the chat API endpoint."""
+    try:
+        payload = {"message": message}
+        if session_id:
+            payload["session_id"] = session_id
+        response = httpx.post(
+            f"{API_BASE_URL}/chat",
+            json=payload,
+            timeout=60.0,
+        )
+        response.raise_for_status()
+        return response.json()
+    except httpx.HTTPStatusError as e:
+        return {"error": f"API error: {e.response.status_code}"}
+    except Exception as e:
+        return {"error": f"Connection error: {str(e)}"}
+
 
 def call_rag_api(query: str, top_k: int = 3) -> dict:
-    """Call the /rag-query endpoint"""
-    payload = {"query": query, "top_k": top_k}
+    """Call the RAG query API endpoint."""
+    try:
+        response = httpx.post(
+            f"{API_BASE_URL}/rag-query",
+            json={"query": query, "top_k": top_k},
+            timeout=60.0,
+        )
+        response.raise_for_status()
+        return response.json()
+    except httpx.HTTPStatusError as e:
+        return {"error": f"API error: {e.response.status_code}"}
+    except Exception as e:
+        return {"error": f"Connection error: {str(e)}"}
 
-    response = requests.post(f"{API_BASE_URL}/rag-query", json=payload)
-    response.raise_for_status()
-    return response.json()
 
+# Chat Mode
+if mode == "💬 Chat":
+    st.header("💬 Chat with LLM")
+    st.caption("Have a direct conversation with the language model.")
 
-def render_chat_tab():
-    """Render the Chat tab content"""
-    st.header("Chat")
-    st.caption("Chat with the AI assistant.")
-
-    # Initialize session state for chat
-    if "chat_messages" not in st.session_state:
-        st.session_state.chat_messages = []
-    if "session_id" not in st.session_state:
-        st.session_state.session_id = None
-
-    # display chat memory
+    # Display chat history
     for msg in st.session_state.chat_messages:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    # chat input
+    # Chat input
     if prompt := st.chat_input("Type your message..."):
-        # add user message to history
+        # Add user message
         st.session_state.chat_messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
 
-        # Call API
+        # Get response
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
-                try:
-                    result = call_chat_api(prompt, st.session_state.session_id)
-                    response = result["response"]
-                    st.session_state.session_id = result["session_id"]
-                    st.write(response)
-                    st.session_state.chat_messages.append({"role": "assistant", "content": response})
-                except requests.exceptions.RequestException as e:
-                    st.error(f"Error connection to API: {e}")
-    
-    #sidebar controls for chat
-    with st.sidebar:
-        st.subheader("Chat Controls")
-        if st.button("Clear Conversation"):
-            st.session_state.chat_messages = []
-            st.session_state.session_id = None
-            st.rerun()
+                result = call_chat_api(prompt, st.session_state.chat_session_id)
 
-        if st.session_state.session_id:
-            st.caption(f"Session: `{st.session_state.session_id[:8]}...`")
+            if "error" in result:
+                st.error(result["error"])
+                st.caption("Make sure Ollama is running: `ollama serve`")
+            else:
+                reply = result.get("response", "No response")
+                st.session_state.chat_session_id = result.get("session_id")
+                st.write(reply)
+                st.session_state.chat_messages.append({"role": "assistant", "content": reply})
 
-def render_rag_tab():
-    """render the RAG Q&A tab content."""
-    st.header("RAG Q&A")
-    st.caption("Ask questions about ACME company documents.")
+    # Clear chat button
+    if st.button("Clear Chat History"):
+        st.session_state.chat_messages = []
+        st.session_state.chat_session_id = None
+        st.rerun()
 
-    # Initialize RAG history
-    if "rag_history" not in st.session_state:
-        st.session_state.rag_history = []
-    
-    # Sidebar controls
+# RAG Mode
+else:
+    st.header("📚 RAG Q&A")
+    st.caption("Ask questions about ACME company documents. Answers are grounded in the document content.")
+
+    # RAG settings in sidebar
     with st.sidebar:
         st.subheader("RAG Settings")
-        top_k = st.slider("Documents to retrieve", min_value=1, max_value=10, value=3)
+        top_k = st.slider("Number of sources", min_value=1, max_value=5, value=3)
 
-        if st.button("Clear RAG History"):
-            st.session_state.rag_history = []
-            st.rerun()
-    
-    # query input
-    query = st.text_input("Ask a question about company documents:", key="rag_query")
+    # Display RAG history
+    for msg in st.session_state.rag_messages:
+        with st.chat_message(msg["role"]):
+            st.write(msg["content"])
+            if msg.get("sources"):
+                with st.expander(f"📄 Sources ({len(msg['sources'])} documents)"):
+                    for i, source in enumerate(msg["sources"], 1):
+                        st.markdown(f"**Source {i}:** {source['source']} (chunk {source['chunk_id']})")
+                        st.caption(source["content_preview"])
+                        st.divider()
 
-    if st.button("Search", type="primary") and query:
-        try:
-            result = call_rag_api(query, top_k)
-            st.session_state.rag_history.append({
-                "query": query,
-                "answer": result["answer"],
-                "sources": result["sources"],
-            })
-        except requests.exceptions.RequestException as e:
-            st.error(f"Error connecting to API: {e}")
+    # RAG input
+    if query := st.chat_input("Ask a question about the documents..."):
+        # Add user message
+        st.session_state.rag_messages.append({"role": "user", "content": query})
+        with st.chat_message("user"):
+            st.write(query)
 
-    # display RAG history (most recent first)
-    for item in reversed(st.session_state.rag_history):
-        with st.container():
-            st.markdown(f"**Q:** {item['query']}")
-            st.markdown(f"**A:** {item['answer']}")                
+        # Get response
+        with st.chat_message("assistant"):
+            with st.spinner("Searching documents and generating answer..."):
+                result = call_rag_api(query, top_k)
 
-            with st.expander(f"Sources ({len(item['sources'])} documents)"):
-                for source in item["sources"]:
-                    st.markdown(f"**{source['source']}** (chunk {source['chunk_id']})")
-                    st.caption(source["content_preview"])
-                    st.divider()
+            if "error" in result:
+                st.error(result["error"])
+                st.caption("Make sure the backend is running and Ollama is available.")
+            else:
+                answer = result.get("answer", "No answer generated")
+                sources = result.get("sources", [])
 
-            st.divider()
+                st.write(answer)
 
-def main():
-    """Main Streamlit app"""
-    st.set_page_config(
-        page_title="ACME GenAI Assistant",
-        page_icon="🧨",
-        layout="wide",
-    )
-    st.title("🤖 ACME Assistant")
+                if sources:
+                    with st.expander(f"📄 Sources ({len(sources)} documents)"):
+                        for i, source in enumerate(sources, 1):
+                            st.markdown(f"**Source {i}:** {source['source']} (chunk {source['chunk_id']})")
+                            st.caption(source["content_preview"])
+                            st.divider()
 
-    # Create tabs for chat and RAG
-    tab_chat, tab_rag = st.tabs(["Chat", "RAG Q&A"])
+                st.session_state.rag_messages.append({
+                    "role": "assistant",
+                    "content": answer,
+                    "sources": sources,
+                })
 
-    with tab_chat:
-        render_chat_tab()
+    # Clear RAG history button
+    if st.button("Clear Q&A History"):
+        st.session_state.rag_messages = []
+        st.rerun()
 
-    with tab_rag:
-        render_rag_tab()
-
-    # footer
-    st.sidebar.markdown("---")
-    st.sidebar.caption("GenAI Challenge - ACME Corpóration")
-
-if __name__ == "__main__":
-    main()
+# Footer
+st.divider()
+st.caption("GenAI Challenge - ACME Corporation | Built with FastAPI, ChromaDB, and Streamlit")

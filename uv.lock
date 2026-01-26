@@ -472,6 +472,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "langchain" },
     { name = "langchain-chroma" },
     { name = "langchain-huggingface" },
@@ -496,6 +497,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.128.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain", specifier = ">=1.2.7" },
     { name = "langchain-chroma", specifier = ">=1.1.0" },
     { name = "langchain-huggingface", specifier = ">=1.2.0" },
