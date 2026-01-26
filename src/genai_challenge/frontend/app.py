@@ -8,9 +8,9 @@ web UI for:
 
 import streamlit as st
 import requests
-
+import os
 # backend API URL
-API_BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
 
 def call_chat_api(message: str, session_id: str | None = None) -> dict:
     """Call the /chat endpoint"""
