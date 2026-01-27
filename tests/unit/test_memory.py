@@ -3,6 +3,7 @@ Unit tests for conversation memory store
 """
 
 import pytest
+
 from genai_challenge.services.memory import ConversationStore
 
 

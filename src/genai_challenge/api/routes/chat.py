@@ -3,6 +3,7 @@ Chat endpoint - processes user messages through the LLM.
 """
 
 from fastapi import APIRouter
+
 from genai_challenge.api.schemas.chat import ChatRequest, ChatResponse
 from genai_challenge.services.llm_service import chat as llm_chat
 

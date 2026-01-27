@@ -4,12 +4,13 @@ Unit tests for LLM service
 Tests the chat orchestratio logic with mocked dependencies
 """
 
-import pytest
 from unittest.mock import AsyncMock
 
+import pytest
+
+from genai_challenge.core.prompts import SYSTEM_PROMPT
 from genai_challenge.services.llm_service import chat
 from genai_challenge.services.memory import conversation_store
-from genai_challenge.core.prompts import SYSTEM_PROMPT
 
 
 class TestChatService:
@@ -102,7 +103,7 @@ class TestChatService:
 
     @pytest.mark.asyncio
     async def test_includes_history_in_subsequent_calls(self, mock_generate_response):
-        """Should include conversation history in messages for continuing conversations."""
+        """Should include conversation history in messages."""
         session_id = "test-session-history"
 
         # First interaction

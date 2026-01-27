@@ -23,7 +23,7 @@ with st.sidebar:
     mode = st.radio(
         "Select Mode",
         ["💬 Chat", "📚 RAG Q&A"],
-        help="Chat: Direct conversation with LLM\nRAG Q&A: Questions answered from documents",
+        help="Chat: LLM conversation\nRAG Q&A: Document-based answers",
     )
 
     st.divider()
@@ -39,7 +39,7 @@ with st.sidebar:
             st.error("API: Error")
     except Exception:
         st.error("API: Offline")
-        st.caption("Start the backend: `uv run uvicorn genai_challenge.main:app --app-dir src`")
+        st.caption("Start backend: `uv run uvicorn genai_challenge.main:app`")
 
 # Initialize session state
 if "chat_messages" not in st.session_state:
@@ -114,7 +114,9 @@ if mode == "💬 Chat":
                 reply = result.get("response", "No response")
                 st.session_state.chat_session_id = result.get("session_id")
                 st.write(reply)
-                st.session_state.chat_messages.append({"role": "assistant", "content": reply})
+                st.session_state.chat_messages.append(
+                    {"role": "assistant", "content": reply}
+                )
 
     # Clear chat button
     if st.button("Clear Chat History"):
@@ -125,7 +127,7 @@ if mode == "💬 Chat":
 # RAG Mode
 else:
     st.header("📚 RAG Q&A")
-    st.caption("Ask questions about ACME company documents. Answers are grounded in the document content.")
+    st.caption("Ask questions about ACME documents. Answers grounded in content.")
 
     # RAG settings in sidebar
     with st.sidebar:
@@ -139,7 +141,9 @@ else:
             if msg.get("sources"):
                 with st.expander(f"📄 Sources ({len(msg['sources'])} documents)"):
                     for i, source in enumerate(msg["sources"], 1):
-                        st.markdown(f"**Source {i}:** {source['source']} (chunk {source['chunk_id']})")
+                        src = source["source"]
+                        chunk = source["chunk_id"]
+                        st.markdown(f"**Source {i}:** {src} (chunk {chunk})")
                         st.caption(source["content_preview"])
                         st.divider()
 
@@ -167,7 +171,9 @@ else:
                 if sources:
                     with st.expander(f"📄 Sources ({len(sources)} documents)"):
                         for i, source in enumerate(sources, 1):
-                            st.markdown(f"**Source {i}:** {source['source']} (chunk {source['chunk_id']})")
+                            src = source["source"]
+                            chunk = source["chunk_id"]
+                            st.markdown(f"**Source {i}:** {src} (chunk {chunk})")
                             st.caption(source["content_preview"])
                             st.divider()
 
@@ -184,4 +190,4 @@ else:
 
 # Footer
 st.divider()
-st.caption("GenAI Challenge - ACME Corporation | Built with FastAPI, ChromaDB, and Streamlit")
+st.caption("GenAI Challenge | Built with FastAPI, ChromaDB, and Streamlit")

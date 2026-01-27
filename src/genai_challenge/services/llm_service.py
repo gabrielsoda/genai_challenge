@@ -1,13 +1,15 @@
 """
-LLM service - orchestrates chat interactions
-Combines the Ollama adapter with conversation memory to provide complete chat experience with history
+LLM service - orchestrates chat interactions.
+
+Combines Ollama adapter with conversation memory for chat with history.
 """
 
 import uuid
 
 from genai_challenge.adapters.ollama import generate_response
-from genai_challenge.services.memory import conversation_store
 from genai_challenge.core.prompts import SYSTEM_PROMPT
+from genai_challenge.services.memory import conversation_store
+
 
 async def chat(
     message: str,

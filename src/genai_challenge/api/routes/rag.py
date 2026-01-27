@@ -7,7 +7,6 @@ from fastapi import APIRouter
 from genai_challenge.api.schemas.rag import RAGRequest, RAGResponse
 from genai_challenge.services.rag_service import rag_query
 
-
 router = APIRouter()
 
 

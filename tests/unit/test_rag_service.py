@@ -4,8 +4,9 @@ Unit tests for RAG service.
 Tests the RAG pipeline orchestration with mocked dependencies.
 """
 
-import pytest
 from unittest.mock import AsyncMock
+
+import pytest
 
 from genai_challenge.services.rag_service import rag_query
 
@@ -51,7 +52,7 @@ class TestRAGService:
 
         result = await rag_query(query="Unknown topic")
 
-        assert "couldn't find any relevant information" in result["answer"]
+        assert "couldn't find relevant information" in result["answer"]
         assert result["sources"] == []
         # Should NOT call LLM when no documents
         mock_generate_response.assert_not_called()

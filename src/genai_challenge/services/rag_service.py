@@ -1,7 +1,7 @@
 """
-RAG service
+RAG service.
 
-Combines docuement retrieval from ChromaDB with LLM generation to answer questions grounded in company documents.
+Combines document retrieval from ChromaDB with LLM generation for Q&A.
 """
 
 from genai_challenge.adapters.chroma import similarity_search
@@ -28,7 +28,7 @@ async def rag_query(
 
     if not retrieved_docs:
         return {
-            "answer": "I couldn't find any relevant information in the available documents.",
+            "answer": "I couldn't find relevant information in the documents.",
             "sources": [],
         }
     # 2: build context from retrieved docuements

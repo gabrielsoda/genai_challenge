@@ -7,7 +7,8 @@ class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, description="User message")
     session_id: str | None = Field(
         default=None,
-        description="Session ID for conversation memory. If not provided, a new session is created.",
+        description="Session ID for conversation memory. "
+        "If not provided, a new session is created.",
     )
 
 

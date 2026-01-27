@@ -5,8 +5,8 @@ This module wraps LangCHain's ChatOllama to keep the arquitecture clean.
 Upper layers (services) interact with this adapter, not directly with LangChain.
 """
 
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_ollama import ChatOllama
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 from genai_challenge.config import settings
 

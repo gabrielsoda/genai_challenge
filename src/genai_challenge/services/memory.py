@@ -32,8 +32,12 @@ class ConversationStore:
         if session_id not in self._sessions:
             self._sessions[session_id] = []
 
-        self._sessions[session_id].append({"role": "user", "content": user_message})
-        self._sessions[session_id].append({"role": "assistant", "content": assistant_response})
+        self._sessions[session_id].append(
+            {"role": "user", "content": user_message}
+        )
+        self._sessions[session_id].append(
+            {"role": "assistant", "content": assistant_response}
+        )
 
     def clear_session(self, session_id: str) -> None:
         """Clear memory for a specific session."""

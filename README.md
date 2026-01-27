@@ -1,5 +1,7 @@
 # GenAI RAG Challenge
 
+![CI](https://github.com/gabrielsoda/genai_challenge/actions/workflows/ci.yml/badge.svg)
+
 A production-ready GenAI application featuring a conversational LLM with memory, RAG (Retrieval-Augmented Generation) pipeline for document Q&A, and interactive Streamlit frontend.
 
 ## Project Overview
@@ -426,4 +428,23 @@ uv run pytest tests/ -v
 | `test_schemas.py` | Pydantic validation (requests, responses) |
 | `test_llm_service.py` | Chat orchestration (mocked LLM) |
 | `test_rag_service.py` | RAG pipeline (mocked retrieval) |
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+```yaml
+# .github/workflows/ci.yml
+on: [push, pull_request] to main branch
+
+Jobs:
+- lint: Runs ruff linter on src/ and tests/
+- test: Runs pytest with all 44 tests
+- docker-build: Verifies Docker image builds successfully
+```
+
+The CI pipeline ensures:
+- **Code Quality**: All code passes linting rules (ruff)
+- **Test Coverage**: All tests pass before merge
+- **Build Verification**: Docker image builds correctly
 
