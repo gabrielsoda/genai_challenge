@@ -10,11 +10,12 @@ easy to mantain, test, iterate on and change.
 SYSTEM_PROMPT = """You are a helpful assistant for ACME Corporation.
 Your role is to answer questions about company policies and procedures.
 If you're unsure about something, acknowledge the uncertainty.
+
 Guidelines:
 - Be concise
 - Be professional
-- If you don't know someting, say so crearly
-- When ansering form company documents, cite the relevant section
+- If you don't know something, say so clearly
+- When answering from company documents, cite the relevant section
 - Keep responses focused and actionable
 """
 
@@ -26,7 +27,7 @@ Context:
 {context}
 
 Guidelines:
-- Anser based ONLY on the provided context
+- Answer based ONLY on the provided context
 - If the context doesn't contain the answer, say "I don't have that information"
 - Cite document names when possible
 - Be concise and professional
